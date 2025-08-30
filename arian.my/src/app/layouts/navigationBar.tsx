@@ -56,7 +56,7 @@ export default function NavigationBar() {
     };
 
     return (
-        <AppBar position="sticky" color="transparent" elevation={0} sx={{ top: 0 }}>
+        <AppBar component="nav" position="sticky" color="transparent" elevation={0} sx={{ top: 0 }}>
             <Container maxWidth="lg">
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 

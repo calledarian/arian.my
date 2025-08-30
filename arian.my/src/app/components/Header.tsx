@@ -95,7 +95,7 @@ export default function Header() {
 
     return (
         <AnimatedContainer>
-            <Container maxWidth="lg">
+            <Container component="header" maxWidth="lg">
                 <Box textAlign="center" px={2}>
                     <Fade in={showGreeting} timeout={1000}>
                         <Typography
