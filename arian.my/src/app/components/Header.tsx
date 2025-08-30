@@ -36,7 +36,7 @@ const AnimatedContainer = styled(Box)({
 enum Skill {
     WebTools = 'web tools',
     MobileApps = 'mobile apps',
-    AI = 'AI systems',
+    AI = 'automation bots',
     APIs = 'APIs',
     UXUI = 'UX/UI',
     Scalable = 'scalable solutions',
