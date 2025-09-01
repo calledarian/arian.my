@@ -4,6 +4,7 @@
   --icon-color: #171717;
   --link-color: #171717;
   --card-color: #5c6bc0;
+  --card-text: #ffffff;
   --tech-color: #0470e2;
 }
 
@@ -13,6 +14,7 @@ body.dark {
   --icon-color: #ededed;
   --link-color: #ededed;
   --card-color: #81d4fa;
+  --card-text: #ffffff;
   --tech-color: #4ec9b0;
 }
 

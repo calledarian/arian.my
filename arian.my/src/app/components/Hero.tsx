@@ -71,11 +71,11 @@ const ProjectCard = ({ project }: { project: ProjectCard }) => {
                     />
                 ))}
 
-                <CardContent sx={{ background: "var(--card-color)", color: "var(--background)", minHeight: 220 }}>
+                <CardContent sx={{ background: "var(--card-color)", color: "var(--card-text)", minHeight: 220 }}>
                     <Typography gutterBottom variant="h5" component="div">
                         {project.title}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "var(--background)" }}>
+                    <Typography variant="body2" sx={{ color: "var(--card-text)" }}>
                         {project.description}
                     </Typography>
                 </CardContent>
