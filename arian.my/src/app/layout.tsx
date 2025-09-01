@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords: [
     "Arian Khademolghorani",
     "Software developer",
-    "React",
+    "Calledarian",
     "Next.js",
     "TypeScript",
     "Node.js",
@@ -65,7 +65,6 @@ export default function RootLayout({
         <NavigationBar />
         <Container
           maxWidth="lg"
-          component="main"
           sx={{ flex: 1, mt: 4, mb: 4 }}
         >
           {children}

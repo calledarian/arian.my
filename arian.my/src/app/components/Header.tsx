@@ -38,8 +38,7 @@ enum Skill {
     MobileApps = 'mobile apps',
     AI = 'automation bots',
     APIs = 'APIs',
-    UXUI = 'UX/UI',
-    Scalable = 'scalable solutions',
+    UXUI = 'UX/UIs',
 }
 
 enum Tech {

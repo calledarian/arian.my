@@ -1,13 +1,10 @@
 :root {
-  --background: #ffffff;
+  --background: #f5e1e1;
   --foreground: #171717;
   --icon-color: #171717;
   --link-color: #171717;
-  --terminal-accent: #007acc;
+  --card-color: #5c6bc0;
   --tech-color: #0470e2;
-  /* light blue on light mode */
-
-
 }
 
 body.dark {
@@ -15,10 +12,8 @@ body.dark {
   --foreground: #ededed;
   --icon-color: #ededed;
   --link-color: #ededed;
-  --terminal-accent: #4ec9b0;
+  --card-color: #81d4fa;
   --tech-color: #4ec9b0;
-  /* greenish on dark mode */
-
 }
 
 html,

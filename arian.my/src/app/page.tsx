@@ -1,9 +1,12 @@
 import Header from "./components/Header";
-import Terminal from "./components/terminal";
+import Hero from "./components/Hero";
 
 export default function Home() {
   return (
-    <Header />
+    <>
+    <Header /> 
+    <Hero />
+    </>
 
   );
 }
