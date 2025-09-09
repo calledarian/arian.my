@@ -3,6 +3,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Container, Typography, Fade } from '@mui/material';
 import { useEffect } from 'react';
 import 'glightbox/dist/css/glightbox.min.css';
+import FadeIn from '../utils/fadeIn';
 
 
 interface ProjectCard {
@@ -122,15 +123,11 @@ export default function Hero() {
             }}
         >
             {PROJECTS.map((project, index) => (
-                <Fade
-                    key={project.id}
-                    in={true}
-                    style={{ transitionDelay: `${index * 400}ms` }}
-                >
+                <FadeIn key={project.id} delay={index * 400}>
                     <div>
                         <ProjectCard project={project} />
                     </div>
-                </Fade>
+                </FadeIn>
             ))}
         </Container>
 

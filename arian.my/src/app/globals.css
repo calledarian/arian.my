@@ -18,6 +18,23 @@ body.dark {
   --tech-color: #4ec9b0;
 }
 
+:root {
+  /* Base */
+  --timeline-job: #5c6bc0;        /* matches card-color (purple-blue) */
+  --timeline-education: #0470e2;  /* matches tech-color (blue) */
+  --timeline-certificate: #e67e22; /* orange for highlight */
+  --timeline-learning: #2e7d32;   /* green for ongoing */
+}
+
+body.dark {
+  /* Base */
+  --timeline-job: #0288d1;        /* matches dark card-color (blue) */
+  --timeline-education: #4ec9b0;  /* matches tech-color (teal) */
+  --timeline-certificate: #f39c12; /* brighter orange */
+  --timeline-learning: #81c784;   /* softer green */
+}
+
+
 html,
 body {
   max-width: 100vw;

@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Stack, IconButton, Link } from '@mui/material';
-import { GitHub, LinkedIn, Twitter } from '@mui/icons-material';
+import { GitHub, LinkedIn, Telegram } from '@mui/icons-material';
 
 export default function Footer() {
     return (
@@ -17,14 +17,14 @@ export default function Footer() {
 
                     <Stack direction="row" spacing={1}>
                         {/* Use CSS variable for icon color */}
-                        <IconButton component={Link} href="https://github.com/arian" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
+                        <IconButton component={Link} href="https://t.me/calledarian" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
+                            <Telegram />
+                        </IconButton>
+                        <IconButton component={Link} href="https://github.com/calledarian" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
                             <GitHub />
                         </IconButton>
-                        <IconButton component={Link} href="https://linkedin.com/in/arian" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
+                        <IconButton component={Link} href="https://linkedin.com/in/arian-khademolghorani" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
                             <LinkedIn />
-                        </IconButton>
-                        <IconButton component={Link} href="https://twitter.com/arian" target="_blank" rel="noopener" sx={{ color: 'var(--icon-color)' }}>
-                            <Twitter />
                         </IconButton>
                     </Stack>
                 </Stack>
