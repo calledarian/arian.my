@@ -1,4 +1,4 @@
-// blog/page.tsx
+
 import React from "react";
 import { Container, Typography, Box, Paper, List, ListItem } from "@mui/material";
 import FadeIn from "@/app/utils/fadeIn";
@@ -25,8 +25,8 @@ enum BlogSections {
 const blogSections: BlogSection[] = [
     {
         id: BlogSections.Install,
-        title: "1. First, You'll Need to Install `expo-audio`",
-        content: "We're using `expo-audio` because it's a huge help. It gives you things that other libraries just don't:",
+        title: "1. First, You&apos;ll Need to Install `expo-audio`",
+        content: "We&apos;re using `expo-audio` because it&apos;s a huge help. It gives you things that other libraries just don&apos;t:",
         codeSnippet: "expo install expo-audio",
         listItems: [
             "1. Live decibel readings (super important for that cool visualizer)",
@@ -37,7 +37,7 @@ const blogSections: BlogSection[] = [
     {
         id: BlogSections.RecorderHook,
         title: "2. The Recorder Hook: How to Start, Stop & Get Metering",
-        content: "This is the brain of the whole thing. We're building a custom hook to handle the recording, grab those decibel readings, and give us the finished audio file's link.",
+        content: "This is the brain of the whole thing. We&apos;re building a custom hook to handle the recording, grab those decibel readings, and give us the finished audio file&apos;s link.",
         codeSnippet: `function useAudioRecorderHook() {
   const [recordingInProgress, setRecordingInProgress] = useState(false);
   const [currentDecibel, setCurrentDecibel] = useState<number | null>(null);
@@ -76,15 +76,15 @@ const blogSections: BlogSection[] = [
 }`,
         listItems: [
             "1. isMeteringEnabled: true is the magic switch that lets us create the waveform.",
-            "2. We're using a ref for the latest decibel reading. This is a pro tip, it lets us update the value without causing a bunch of pointless re-renders.",
-            "3. The useEffect is just there to update our state so the UI knows what's up.",
+            "2. We&apos;re using a ref for the latest decibel reading. This is a pro tip, it lets us update the value without causing a bunch of pointless re-renders.",
+            "3. The useEffect is just there to update our state so the UI knows what&apos;s up.",
         ],
     },
     {
         id: BlogSections.Waveform,
         title: "3. Building That Awesome WhatsApp-Style Waveform",
         content:
-            "This is the fun part. We want a smooth, scrolling waveform that looks like a real-time voice message. We'll even add a little bit of randomness to make it feel more alive, just like the real WhatsApp animation.",
+            "This is the fun part. We want a smooth, scrolling waveform that looks like a real-time voice message. We&apos;ll even add a little bit of randomness to make it feel more alive, just like the real WhatsApp animation.",
         codeSnippet: `function WaveformDisplay({
   recordingInProgress,
   latestDecibel,
@@ -151,7 +151,7 @@ const blogSections: BlogSection[] = [
     {
         id: BlogSections.MainApp,
         title: "4. Putting It All Together in the Main App",
-        content: "Now for the easy part. We'll combine our custom hook and the waveform component into a clean, simple UI. No extra fluff, just the core functionality.",
+        content: "Now for the easy part. We&apos;ll combine our custom hook and the waveform component into a clean, simple UI. No extra fluff, just the core functionality.",
         codeSnippet: `export default function AudioRecorderWithWaveform() {
   const { recordingInProgress, currentDecibel, audioUri, startOrStopRecording, latestDecibel } =
     useAudioRecorderHook();
@@ -190,12 +190,11 @@ const blogSections: BlogSection[] = [
         listItems: [
             "You get live decibel readings, which is what makes a real-time waveform even possible.",
             "The `ref` and `buffer` make sure your app runs smoothly, with no excessive re-renders.",
-            "The scrolling waveform feels natural because we’re using a fixed buffer and a timed interval.",
-            "And that tiny bit of random variation? It’s what gives the animation that perfect, WhatsApp-like wiggle.",
+            "The scrolling waveform feels natural because we&apos;re using a fixed buffer and a timed interval.",
+            "And that tiny bit of random variation? It&apos;s what gives the animation that perfect, WhatsApp-like wiggle.",
         ],
     },
 ];
-
 
 // --- Blog Page Component ---
 export default function BlogPage() {
@@ -207,36 +206,16 @@ export default function BlogPage() {
                     "@type": "BlogPosting",
                     "headline": "Expo Audio Waveform Tutorial",
                     "description": "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native.",
-                    "author": {
-                        "@type": "Person",
-                        "name": "Arian Khademolghorani"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Arian.my",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://arian.my/assets/logo.png"
-                        }
-                    },
+                    "author": { "@type": "Person", "name": "Arian Khademolghorani" },
+                    "publisher": { "@type": "Organization", "name": "Arian.my", "logo": { "@type": "ImageObject", "url": "https://arian.my/assets/logo.png" } },
                     "datePublished": "2025-09-16",
                     "dateModified": "2025-09-16"
                 })}
             </Script>
-            <Container
-                maxWidth="md"
-                sx={{ py: { xs: 4, md: 6 } }}
-            >
+
+            <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
                 <article>
-                    <Typography
-                        variant="h3"
-                        component="h1"
-                        gutterBottom
-                        sx={{
-                            mb: { xs: 2, sm: 4 },
-                            fontSize: { xs: '2rem', sm: '3rem' },
-                        }}
-                    >
+                    <Typography variant="h3" component="h1" gutterBottom sx={{ mb: { xs: 2, sm: 4 }, fontSize: { xs: '2rem', sm: '3rem' } }}>
                         Building an Audio Waveform in Expo Audio: A Modern Guide
                     </Typography>
 
@@ -246,51 +225,19 @@ export default function BlogPage() {
 
                     {blogSections.map((section, i) => (
                         <FadeIn key={section.id} delay={i * 400}>
-                            <Paper
-                                elevation={0}
-                                sx={{
-                                    py: { xs: 2, sm: 3 },
-                                    px: { xs: 2, sm: 4 },
-                                    mb: { xs: 3, sm: 4 },
-                                    background: "var(--background)",
-                                    color: "var(--foreground)",
-                                    borderRadius: 2,
-                                }}
-                            >
-                                <Typography
-                                    variant="h5"
-                                    gutterBottom
-
-                                    sx={{
-                                        fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                                        color: "var(--card-color)",
-                                    }}
-                                >
+                            <Paper elevation={0} sx={{ py: { xs: 2, sm: 3 }, px: { xs: 2, sm: 4 }, mb: { xs: 3, sm: 4 }, background: "var(--background)", color: "var(--foreground)", borderRadius: 2 }}>
+                                <Typography variant="h5" gutterBottom sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' }, color: "var(--card-color)" }}>
                                     {section.title}
                                 </Typography>
 
                                 {section.content && (
-                                    <Typography paragraph sx={{
-                                        mt: 1, color: "var(--tech-color)",
-                                    }}>
+                                    <Typography paragraph sx={{ mt: 1, color: "var(--tech-color)" }}>
                                         {section.content}
                                     </Typography>
                                 )}
 
                                 {section.codeSnippet && (
-                                    <Box
-                                        component="pre"
-                                        sx={{
-                                            background: "var(--tech-color)",
-                                            color: "var(--background)",
-                                            p: { xs: 1.5, sm: 2 },
-                                            borderRadius: 1,
-                                            fontFamily: "monospace",
-                                            mt: 2,
-                                            mb: 2,
-                                            overflowX: 'auto',
-                                        }}
-                                    >
+                                    <Box component="pre" sx={{ background: "var(--tech-color)", color: "var(--background)", p: { xs: 1.5, sm: 2 }, borderRadius: 1, fontFamily: "monospace", mt: 2, mb: 2, overflowX: 'auto' }}>
                                         {section.codeSnippet}
                                     </Box>
                                 )}
@@ -309,27 +256,19 @@ export default function BlogPage() {
                     ))}
 
                     <Typography paragraph sx={{ mt: 4, fontStyle: 'italic' }}>
-                        And that's it! You now have a smooth, responsive audio recorder with a cool waveform visualizer. This approach is more reliable and gives you the tools you need to build something truly polished.
+                        And that&apos;s it! You now have a smooth, responsive audio recorder with a cool waveform visualizer. This approach is more reliable and gives you the tools you need to build something truly polished.
                     </Typography>
-                </article >
+                </article>
             </Container>
-
         </>
-
     );
 }
-// app/blog/page.tsx
+
+// Metadata
 export const metadata = {
     title: "Expo Audio Waveform Tutorial | React Native Audio Recording Guide",
     description: "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native. Live decibel readings, smooth animations, and recording hooks explained.",
-    keywords: [
-        "expo-audio",
-        "react native audio recorder",
-        "audio waveform",
-        "expo tutorial",
-        "React Native recording",
-        "audio visualization"
-    ],
+    keywords: ["expo-audio","react native audio recorder","audio waveform","expo tutorial","React Native recording","audio visualization"],
     authors: [{ name: "Arian Khademolghorani", url: "https://arian.my" }],
     openGraph: {
         title: "Expo Audio Waveform Tutorial",
@@ -337,34 +276,17 @@ export const metadata = {
         url: "https://arian.my/blog/waveform",
         siteName: "Your Dev Blog",
         type: "article",
-        images: [
-            {
-                url: "https://arian.my/assets/waveform.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Expo Audio Waveform Tutorial"
-            }
-        ],
+        images: [{ url: "https://arian.my/assets/waveform.jpg", width: 1200, height: 630, alt: "Expo Audio Waveform Tutorial" }],
     },
     twitter: {
         card: "summary_large_image",
         title: "Expo Audio Waveform Tutorial",
         description: "Learn how to build a live audio waveform in React Native using expo-audio.",
-        images: [{
-            url: "https://arian.my/assets/waveform.jpg",
-            alt: "Expo Audio Waveform Tutorial",
-            width: 1200,
-        }],
+        images: [{ url: "https://arian.my/assets/waveform.jpg", alt: "Expo Audio Waveform Tutorial", width: 1200 }],
     },
-    robots: {
-        index: true,
-        follow: true,
-    },
+    robots: { index: true, follow: true },
     alternates: {
         canonical: "https://arian.my/blog/waveform",
-        languages: {
-            "en-US": "https://arian.my/en/blog/waveform",
-            "tr-TR": "https://arian.my/tr/blog/waveform",
-        },
+        languages: { "en-US": "https://arian.my/en/blog/waveform", "tr-TR": "https://arian.my/tr/blog/waveform" },
     },
 };
