@@ -67,6 +67,7 @@ export default function Education() {
                     <br />
                     <Typography
                         variant="body2"
+                        component="span" // <-- fix here
                         sx={{
                             color: "var(--tech-color)",
                             display: "flex",
@@ -81,6 +82,7 @@ export default function Education() {
                     </Typography>
                 </>
             ),
+
             icon: <WorkIcon />,
             type: 'job',
         },
@@ -94,7 +96,7 @@ export default function Education() {
                     <FadeIn key={i} delay={i * 400}>
                         <TimelineItem key={i}>
                             <TimelineSeparator>
-                                {i !== 0  && <TimelineConnector />}
+                                {i !== 0 && <TimelineConnector />}
                                 <TimelineDot
                                     sx={{
                                         bgcolor:
