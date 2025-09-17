@@ -17,11 +17,11 @@ interface BlogsCard {
 const BLOGS: BlogsCard[] = [
     {
         id: 1,
-        title: "Building an Audio Waveform in Expo Audio: A Modern Guide",
+        title: "Building an Audio Waveform in Expo Audio: IOS & ANDROID",
         path: [
-            "waveform.jpg",
+            "waveformReal.jpg",
         ],
-        description: "Most tutorials for audio waveforms rely on outdated expo-av methods that no longer work seamlessly in modern Expo apps.    This guide provides a practical, step-by-step approach to implementing a fully functional audio waveform using expo-audio. Perfect for developers who want a working solution for recording, visualizing, and managing audio without the headaches of deprecated APIs.",
+        description: "Most tutorials for audio waveforms rely on outdated expo-av methods that no longer work seamlessly in modern Expo apps. This guide provides a practical, step-by-step approach to implementing a fully functional audio waveform using expo-audio. Perfect for developers who want a working solution for recording, visualizing, and managing audio without the headaches of deprecated APIs.",
         href: "/blog/waveform"
     },
 ];
