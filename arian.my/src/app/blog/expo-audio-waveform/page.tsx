@@ -321,8 +321,8 @@ export default function BlogPage() {
           >
             <Box flex={1} maxWidth={{ xs: "100%", sm: 400 }}>
               <Image
-                src="/waveformReal.jpg"
-                alt="Real waveform"
+                src="expo-audio-soundwave.jpg"
+                alt="Expo Audio Waveform visualization"
                 width={400}
                 height={150}
                 style={{ width: "100%", height: "auto", borderRadius: 8 }}
