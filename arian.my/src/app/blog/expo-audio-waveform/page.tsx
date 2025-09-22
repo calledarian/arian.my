@@ -1,6 +1,12 @@
-
 import React from "react";
-import { Container, Typography, Box, Paper, List, ListItem } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Paper,
+  List,
+  ListItem,
+} from "@mui/material";
 import FadeIn from "@/app/utils/fadeIn";
 import Script from "next/script";
 import Image from "next/image";
@@ -28,7 +34,8 @@ const blogSections: BlogSection[] = [
   {
     id: BlogSections.Install,
     title: "1. First, You will Need to Install `expo-audio`",
-    content: "We are using `expo-audio` because it is a huge help. It gives you things that other libraries just do not:",
+    content:
+      "We are using `expo-audio` because it is a huge help. It gives you things that other libraries just do not:",
     codeSnippet: "npx expo install expo-audio",
     listItems: [
       "1. Live decibel readings (super important for that cool visualizer)",
@@ -73,12 +80,13 @@ const blogSections: BlogSection[] = [
     listItems: [
       "The `microphonePermission` string is shown to iOS users when microphone access is requested.",
       "On Android, expo-audio automatically adds the correct manifest entries for microphone access.",
-    ]
+    ],
   },
   {
     id: BlogSections.RecorderHook,
     title: "3. The Recorder Hook: How to Start, Stop & Get Metering",
-    content: "This is the brain of the whole thing. We are building a custom hook to handle the recording, grab those decibel readings, and give us the finished audio file links.",
+    content:
+      "This is the brain of the whole thing. We are building a custom hook to handle the recording, grab those decibel readings, and give us the finished audio file links.",
     codeSnippet: `import { useEffect, useRef, useState } from "react";
 import { useAudioRecorder, useAudioRecorderState, RecordingPresets, AudioModule, setAudioModeAsync } from "expo-audio";
 import { Alert } from "react-native";
@@ -215,7 +223,8 @@ export default function WaveformDisplay({
   {
     id: BlogSections.MainApp,
     title: "5. Putting It All Together in the Main App",
-    content: "Now for the easy part. We will combine our custom hook and the waveform component into a clean, simple UI. No extra fluff, just the core functionality.",
+    content:
+      "Now for the easy part. We will combine our custom hook and the waveform component into a clean, simple UI. No extra fluff, just the core functionality.",
     codeSnippet: `import { Text, TouchableOpacity, View } from "react-native";
 import useAudioRecorderHook from "./useAudioRecorderHook";
 import WaveformDisplay from "./waveForm";
@@ -242,7 +251,7 @@ export default function AudioRecorderWithWaveform() {
       >
         <Text style={{ color: "white" }}>{recordingInProgress ? "Stop" : "Record"}</Text>
       </TouchableOpacity>
-      
+
       {/* This is the corrected footer */}
       <Text style={{ marginTop: 20, fontSize: 14, color: "#888" }}>Made with love by Arian Khademolghorani (https://github.com/calledarian)</Text>
     </View>
@@ -275,18 +284,31 @@ export default function BlogPage() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
-          "headline": "Expo Audio Waveform Tutorial",
-          "description": "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native.",
-          "author": { "@type": "Person", "name": "Arian Khademolghorani" },
-          "publisher": { "@type": "Organization", "name": "Arian.my", "logo": { "@type": "ImageObject", "url": "https://arian.my/assets/logo.png" } },
-          "datePublished": "2025-09-16",
-          "dateModified": "2025-09-16"
+          headline: "Expo Audio Waveform Tutorial",
+          description:
+            "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native.",
+          author: { "@type": "Person", name: "Arian Khademolghorani" },
+          publisher: {
+            "@type": "Organization",
+            name: "Arian.my",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://arian.my/assets/logo.png",
+            },
+          },
+          datePublished: "2025-09-16",
+          dateModified: "2025-09-16",
         })}
       </Script>
 
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
         <article>
-          <Typography variant="h3" component="h1" gutterBottom sx={{ mb: { xs: 2, sm: 4 }, fontSize: { xs: '2rem', sm: '3rem' } }}>
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            sx={{ mb: { xs: 2, sm: 4 }, fontSize: { xs: "2rem", sm: "3rem" } }}
+          >
             Building an Audio Waveform in Expo Audio: IOS & ANDROID
           </Typography>
           <Box
@@ -308,24 +330,61 @@ export default function BlogPage() {
             </Box>
           </Box>
           <Typography paragraph>
-
-            Most tutorials for audio waveforms rely on outdated expo-av methods that no longer work seamlessly in modern Expo apps. This guide provides a practical, step-by-step approach to implementing a fully functional audio waveform using expo-audio. Perfect for developers who want a working solution for recording, visualizing, and managing audio without the headaches of deprecated APIs.                    </Typography>
+            Most tutorials for audio waveforms rely on outdated expo-av methods
+            that no longer work seamlessly in modern Expo apps. This guide
+            provides a practical, step-by-step approach to implementing a fully
+            functional audio waveform using expo-audio. Perfect for developers
+            who want a working solution for recording, visualizing, and managing
+            audio without the headaches of deprecated APIs.{" "}
+          </Typography>
 
           {blogSections.map((section, i) => (
-            <FadeIn key={section.id} delay={i * 400}>
-              <Paper elevation={0} sx={{ py: { xs: 2, sm: 3 }, px: { xs: 2, sm: 4 }, mb: { xs: 3, sm: 4 }, background: "var(--background)", color: "var(--foreground)", borderRadius: 2 }}>
-                <Typography variant="h5" gutterBottom sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' }, color: "var(--card-color)" }}>
+            <FadeIn key={section.id} delay={i * 200}>
+              <Paper
+                elevation={0}
+                sx={{
+                  py: { xs: 2, sm: 3 },
+                  px: { xs: 2, sm: 4 },
+                  mb: { xs: 3, sm: 4 },
+                  background: "var(--background)",
+                  color: "var(--foreground)",
+                  borderRadius: 2,
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    fontSize: { xs: "1.25rem", sm: "1.5rem" },
+                    color: "var(--card-color)",
+                  }}
+                >
                   {section.title}
                 </Typography>
 
                 {section.content && (
-                  <Typography paragraph sx={{ mt: 1, color: "var(--tech-color)" }}>
+                  <Typography
+                    paragraph
+                    sx={{ mt: 1, color: "var(--tech-color)" }}
+                  >
                     {section.content}
                   </Typography>
                 )}
 
                 {section.codeSnippet && (
-                  <Box component="pre" sx={{ background: "var(--tech-color)", color: "var(--background)", p: { xs: 1.5, sm: 2 }, borderRadius: 1, fontFamily: "monospace", mt: 2, mb: 2, overflowX: 'auto' }}>
+                  <Box
+                    component="pre"
+                    sx={{
+                      background: "var(--tech-color)",
+                      color: "var(--background)",
+                      p: { xs: 1.5, sm: 2 },
+                      borderRadius: 1,
+                      fontFamily: "monospace",
+                      mt: 2,
+                      mb: 2,
+                      overflowX: "auto",
+                    }}
+                  >
                     {section.codeSnippet}
                   </Box>
                 )}
@@ -333,7 +392,14 @@ export default function BlogPage() {
                 {section.listItems && (
                   <List sx={{ pl: { xs: 1, sm: 2 } }}>
                     {section.listItems.map((item, i) => (
-                      <ListItem key={i} sx={{ display: "list-item", py: 0.5, color: "var(--card-color)" }}>
+                      <ListItem
+                        key={i}
+                        sx={{
+                          display: "list-item",
+                          py: 0.5,
+                          color: "var(--card-color)",
+                        }}
+                      >
                         {item}
                       </ListItem>
                     ))}
@@ -343,8 +409,10 @@ export default function BlogPage() {
             </FadeIn>
           ))}
 
-          <Typography paragraph sx={{ mt: 4, fontStyle: 'italic' }}>
-            And that is it! You now have a smooth, responsive audio recorder with a cool waveform visualizer. This approach is more reliable and gives you the tools you need to build something truly polished.
+          <Typography paragraph sx={{ mt: 4, fontStyle: "italic" }}>
+            And that is it! You now have a smooth, responsive audio recorder
+            with a cool waveform visualizer. This approach is more reliable and
+            gives you the tools you need to build something truly polished.
           </Typography>
         </article>
       </Container>
@@ -355,26 +423,52 @@ export default function BlogPage() {
 // Metadata
 export const metadata = {
   title: "Expo Audio Waveform Tutorial | React Native Audio Recording Guide",
-  description: "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native. Live decibel readings, smooth animations, and recording hooks explained.",
-  keywords: ["expo-audio", "react native audio recorder", "audio waveform", "expo tutorial", "React Native recording", "audio visualization"],
+  description:
+    "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native. Live decibel readings, smooth animations, and recording hooks explained.",
+  keywords: [
+    "expo-audio",
+    "react native audio recorder",
+    "audio waveform",
+    "expo tutorial",
+    "React Native recording",
+    "audio visualization",
+  ],
   authors: [{ name: "Arian Khademolghorani", url: "https://arian.my" }],
   openGraph: {
     title: "Expo Audio Waveform Tutorial",
-    description: "Learn how to build a live audio waveform in React Native using expo-audio.",
+    description:
+      "Learn how to build a live audio waveform in React Native using expo-audio.",
     url: "https://arian.my/blog/waveform",
     siteName: "Your Dev Blog",
     type: "article",
-    images: [{ url: "https://arian.my/assets/waveform.jpg", width: 1200, height: 630, alt: "Expo Audio Waveform Tutorial" }],
+    images: [
+      {
+        url: "https://arian.my/assets/waveform.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Expo Audio Waveform Tutorial",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Expo Audio Waveform Tutorial",
-    description: "Learn how to build a live audio waveform in React Native using expo-audio.",
-    images: [{ url: "https://arian.my/assets/waveform.jpg", alt: "Expo Audio Waveform Tutorial", width: 1200 }],
+    description:
+      "Learn how to build a live audio waveform in React Native using expo-audio.",
+    images: [
+      {
+        url: "https://arian.my/assets/waveform.jpg",
+        alt: "Expo Audio Waveform Tutorial",
+        width: 1200,
+      },
+    ],
   },
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://arian.my/blog/waveform",
-    languages: { "en-US": "https://arian.my/en/blog/waveform", "tr-TR": "https://arian.my/tr/blog/waveform" },
+    languages: {
+      "en-US": "https://arian.my/en/blog/waveform",
+      "tr-TR": "https://arian.my/tr/blog/waveform",
+    },
   },
 };
