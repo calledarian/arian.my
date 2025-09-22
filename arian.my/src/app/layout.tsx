@@ -17,19 +17,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arian Khademolghorani – Software Developer",
+  title: "Arian Khademolghorani (Calledarian) – Software Developer",
   description:
-    "Portfolio and projects of Arian Khademolghorani, showcasing web, mobile, and automation solutions.",
+    "Portfolio of Arian Khademolghorani, also known as Calledarian or Arian Khadem. Showcasing full-stack web, mobile, and automation projects using Next.js and Nest.js.",
   keywords: [
     "Arian Khademolghorani",
-    "Software developer",
+    "Arian Khadem",
     "Calledarian",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
+    "Software Developer",
+    "Full-Stack Developer",
+    "Web Developer",
     "Portfolio",
+    "Personal Website",
   ],
-  authors: [{ name: "Arian Khademolghorani" }],
+
+  authors: [
+    { name: "Arian Khademolghorani (Calledarian)", url: "https://arian.my" },
+  ],
+
+  openGraph: {
+    title: "Arian Khademolghorani (Calledarian) – Software Developer",
+    description:
+      "Portfolio of Arian Khademolghorani, also known as Calledarian or Arian Khadem. Showcasing projects in software development and automation.",
+    url: "https://arian.my",
+    siteName: "Arian Khademolghorani Portfolio",
+    images: [
+      {
+        url: "https://arian.my/arian/arian-khademolghorani.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Arian Khademolghorani – Software Developer",
+      },
+    ],
+    locale: "en_AU",
+    alternateLocale: ["fa_IR", "tr_TR", "km_KH", "en_US"],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Arian Khademolghorani (Calledarian) – Software Developer",
+    description:
+      "Portfolio of Arian Khademolghorani, also known as Calledarian or Arian Khadem. Showcasing projects in software development and automation.",
+    images: ["https://arian.my/arian/arian-khademolghorani.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -63,10 +94,7 @@ export default function RootLayout({
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
         <NavigationBar />
-        <Container
-          maxWidth="lg"
-          sx={{ flex: 1, mt: 4, mb: 4 }}
-        >
+        <Container maxWidth="lg" sx={{ flex: 1, mt: 4, mb: 4 }}>
           {children}
         </Container>
         <Footer />
