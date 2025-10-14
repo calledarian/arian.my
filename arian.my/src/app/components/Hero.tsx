@@ -7,17 +7,18 @@ import {
   CardMedia,
   Container,
   Typography,
-  Fade,
 } from "@mui/material";
 import { useEffect } from "react";
 import "glightbox/dist/css/glightbox.min.css";
 import FadeIn from "../utils/fadeIn";
+import NextLink from "next/link";
 
 interface ProjectCard {
   id: number;
   title: string;
   path: string | string[];
   description: string;
+  href?: string;
 }
 
 const PROJECTS: ProjectCard[] = [
@@ -32,6 +33,7 @@ const PROJECTS: ProjectCard[] = [
     ],
     description:
       "Developed a high-performance full-stack platform serving as a centralized hub for Bible Education Centre's activities. Administrators can securely manage events and content via a streamlined dashboard, enhancing outreach and improving user engagement.",
+    href: "#"
   },
   {
     id: 2,
@@ -45,6 +47,7 @@ const PROJECTS: ProjectCard[] = [
     ],
     description:
       "Built a secure, automated booking platform for a local tour guide. The system enables clients to book tours seamlessly while giving administrators full control over packages, confirmations, and user requests. Features include robust authentication, spam protection, and efficient admin workflows.",
+    href: "#"
   },
   {
     id: 3,
@@ -52,6 +55,7 @@ const PROJECTS: ProjectCard[] = [
     path: "coming-soon.jpg",
     description:
       "Created a Telegram-based food ordering application that streamlines communication between customers, managers, and staff. Customers place orders directly through the bot, managers approve requests, and workers receive real-time notifications—eliminating delays and reducing miscommunication.",
+    href: "/blog/food-ordering-webapp"
   },
 ];
 
@@ -65,30 +69,49 @@ const ProjectCard = ({ project }: { project: ProjectCard }) => {
 
   return (
     <Card sx={{ borderRadius: 4 }}>
-      <CardActionArea>
+      {/* GLightbox image links */}
+      <a
+        href={primaryImage}
+        className="glightbox"
+        data-gallery={`gallery-${project.id}`}
+      >
+        <CardMedia
+          component="img"
+          height="200"
+          image={primaryImage}
+          alt={project.title}
+        />
+      </a>
+
+      {additionalImages.map((image, index) => (
         <a
-          href={primaryImage}
+          key={index}
+          href={image}
           className="glightbox"
           data-gallery={`gallery-${project.id}`}
-        >
-          <CardMedia
-            component="img"
-            height="200"
-            image={primaryImage}
-            alt={project.title}
-          />
-        </a>
+          style={{ display: "none" }}
+        />
+      ))}
 
-        {additionalImages.map((image, index) => (
-          <a
-            key={index}
-            href={image}
-            className="glightbox"
-            data-gallery={`gallery-${project.id}`}
-            style={{ display: "none" }}
-          />
-        ))}
-
+      {/* Make the whole card clickable if href exists */}
+      {project.href ? (
+        <CardActionArea component={NextLink} href={project.href}>
+          <CardContent
+            sx={{
+              background: "var(--card-color)",
+              color: "var(--card-text)",
+              minHeight: 220,
+            }}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+              {project.title}
+            </Typography>
+            <Typography variant="body2">
+              {project.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      ) : (
         <CardContent
           sx={{
             background: "var(--card-color)",
@@ -99,11 +122,11 @@ const ProjectCard = ({ project }: { project: ProjectCard }) => {
           <Typography gutterBottom variant="h5" component="div">
             {project.title}
           </Typography>
-          <Typography variant="body2" sx={{ color: "var(--card-text)" }}>
+          <Typography variant="body2">
             {project.description}
           </Typography>
         </CardContent>
-      </CardActionArea>
+      )}
     </Card>
   );
 };
