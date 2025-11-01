@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import FadeIn from "@/app/utils/fadeIn";
 import Script from "next/script";
-import Image from "next/image";
 
 // --- Types & Interfaces ---
 interface BlogSection {
@@ -21,257 +20,94 @@ interface BlogSection {
 }
 
 enum BlogSections {
-  Install = "install",
-  Config = "expo-audio-config",
-  RecorderHook = "recorderHook",
-  Waveform = "waveform",
-  MainApp = "mainApp",
-  WhyThisWorks = "whyThisWorks",
+  Introduction = "introduction",
+  FrontendFeatures = "frontend-features",
+  BackendFeatures = "backend-features",
+  Timeline = "development-timeline",
+  Deployment = "deployment-hosting",
+  WhyThisWorks = "why-this-works",
 }
-
-// --- Blog Data ---
 const blogSections: BlogSection[] = [
   {
-    id: BlogSections.Install,
-    title: "1. First, You will Need to Install `expo-audio`",
+    id: BlogSections.Introduction,
+    title: "Project Overview",
     content:
-      "We are using `expo-audio` because it is a huge help. It gives you things that other libraries just do not:",
-    codeSnippet: "npx expo install expo-audio",
+      "This blog describes a Telegram Mini App built with Next.js and NestJS, allowing customers to place restaurant orders while the backend bot manages workflows efficiently.",
     listItems: [
-      "1. Live decibel readings (super important for that cool visualizer)",
-      "2. Handy hooks for recording, like `useAudioRecorder`",
-      "3. Full control over your recording settings and quality",
+      "Frontend Mini App built with Next.js for a smooth, responsive UI.",
+      "Backend API built with NestJS for fast and reliable order management.",
+      "SQLite database for storing blacklisted IDs and other essential data.",
+      "Security features including Telegram widget login and blacklist handling by ID.",
+      "Telegram Bot integration for workflow automation and group updates.",
     ],
   },
   {
-    id: BlogSections.Config,
-    title: "2. Configuring expo-audio in app.json",
+    id: BlogSections.FrontendFeatures,
+    title: "Frontend Features: Telegram Mini App",
     content:
-      "When using expo-audio, you need to configure microphone permissions so your app can record or process audio input. This is done inside the app.json file under the plugins section.",
-    codeSnippet: `{
-  "expo": {
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
-          "dark": {
-            "backgroundColor": "#000000"
-          }
-        }
-      ],
-      [
-        "expo-audio",
-        {
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    }
-  }
-}`,
+      "The Mini App provides a smooth ordering experience, handling menu display, cart functionality, secure login, and a 3-step checkout process.",
     listItems: [
-      "The `microphonePermission` string is shown to iOS users when microphone access is requested.",
-      "On Android, expo-audio automatically adds the correct manifest entries for microphone access.",
+      "Dynamic Menu System with categories and items.",
+      "Shopping Cart: Add, remove, and review items before checkout.",
+      "3-Step Checkout Process:",
+      "  1. Customer details (Name, Phone Number, Address, Note).",
+      "  2. Branch selection from available locations.",
+      "  3. Payment options: Cash on Delivery or QR Code.",
+      "Telegram widget login for secure authentication.",
+      "Orders submitted securely to backend via Telegram Web App API.",
+      "Fast and responsive UI powered by Next.js.",
     ],
   },
   {
-    id: BlogSections.RecorderHook,
-    title: "3. The Recorder Hook: How to Start, Stop & Get Metering",
+    id: BlogSections.BackendFeatures,
+    title: "Backend Features: NestJS API & Telegram Bot",
     content:
-      "This is the brain of the whole thing. We are building a custom hook to handle the recording, grab those decibel readings, and give us the finished audio file links.",
-    codeSnippet: `import { useEffect, useRef, useState } from "react";
-import { useAudioRecorder, useAudioRecorderState, RecordingPresets, AudioModule, setAudioModeAsync } from "expo-audio";
-import { Alert } from "react-native";
-
-export default function useAudioRecorderHook() {
-  const [audioUri, setAudioUri] = useState<string | null>(null);
-
-  const recorder = useAudioRecorder({
-    ...RecordingPresets.HIGH_QUALITY,
-    isMeteringEnabled: true,
-  });
-
-  const recorderState = useAudioRecorderState(recorder);
-  const latestDecibel = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (recorderState.metering != null) {
-      latestDecibel.current = recorderState.metering;
-    }
-
-    // Set audioUri only when recording is no longer active and a uri is available
-    if (!recorderState.isRecording && recorderState.uri) {
-      setAudioUri(recorderState.uri);
-    }
-  }, [recorderState.metering, recorderState.isRecording, recorderState.uri]);
-
-  const startOrStopRecording = async () => {
-    try {
-      const permission = await AudioModule.requestRecordingPermissionsAsync();
-      if (!permission.granted) {
-        Alert.alert("Permission required");
-        return;
-      }
-
-      await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true });
-
-      if (recorderState.isRecording) {
-        await recorder.stop();
-      } else {
-        await recorder.prepareToRecordAsync();
-        recorder.record();
-      }
-    } catch (e) {
-      console.error("Failed to start or stop recording:", e);
-      Alert.alert("Recording Error", "An error occurred while managing the recording.");
-    }
-  };
-
-  return {
-    recordingInProgress: recorderState.isRecording,
-    currentDecibel: recorderState.metering ?? null,
-    audioUri,
-    startOrStopRecording,
-    latestDecibel,
-  };
-}`,
+      "The backend is an API service built with NestJS, handling order management, workflows, security, and real-time updates efficiently.",
     listItems: [
-      "1. isMeteringEnabled: true is the magic switch that lets us create the waveform.",
-      "2. We&apos;re using a ref for the latest decibel reading. This is a pro tip, it lets us update the value without causing a bunch of pointless re-renders.",
-      "3. The useEffect is just there to update our state so the UI knows what is up.",
+      "Order Forwarding: Sends order summary to Admin (Boss) Group with Confirm/Cancel buttons.",
+      "Workflow Management:",
+      "  - On confirmation, updates Boss Group and sends details to Workers Group.",
+      "  - Status transitions: Confirm → Preparing → Delivering → Complete.",
+      "Blacklist feature with SQLite to prevent banned users from placing orders.",
+      "Supports multiple simultaneous orders with real-time updates.",
+      "Customers do not receive order status updates.",
+      "API ensures low latency and reliable performance for all operations.",
     ],
   },
   {
-    id: BlogSections.Waveform,
-    title: "4. Building That Awesome WhatsApp-Style Waveform",
+    id: BlogSections.Timeline,
+    title: "Development Timeline",
     content:
-      "This is the fun part. We want a smooth, scrolling waveform that looks like a real-time voice message. We&apos;ll even add a little bit of randomness to make it feel more alive, just like the real WhatsApp animation.",
-    codeSnippet: `import { useEffect, useState } from "react";
-import { View } from "react-native";
-
-export default function WaveformDisplay({
-  recordingInProgress,
-  latestDecibel,
-}: {
-  recordingInProgress: boolean;
-  latestDecibel: React.MutableRefObject<number | null>;
-}) {
-  const [waveformHeights, setWaveformHeights] = useState<number[]>([]);
-  const maxBars = 50;
-
-  useEffect(() => {
-    if (!recordingInProgress) return;
-    setWaveformHeights([]);
-
-    let waveformBuffer: number[] = [];
-    const interval = setInterval(() => {
-      if (latestDecibel.current != null) {
-        const normalized = Math.max(0, Math.min(1, (latestDecibel.current + 60) / 60));
-        const variation = 0.6 + Math.random() * 0.1; // WhatsApp wiggle
-        const height = normalized * 40 * variation;
-
-        waveformBuffer.push(height);
-        if (waveformBuffer.length > maxBars) waveformBuffer.shift();
-
-        setWaveformHeights([...waveformBuffer]);
-      }
-    }, 120);
-
-    return () => clearInterval(interval);
-  }, [recordingInProgress]);
-
-  return (
-    <View style={{
-      height: 60,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 2,
-      width: "100%",
-      marginBottom: 20,
-    }}>
-      {waveformHeights.map((height, index) => (
-        <View
-          key={index}
-          style={{
-            width: 4,
-            height: height * 2,
-            backgroundColor: "#007AFF",
-            borderRadius: 2,
-          }}
-        />
-      ))}
-    </View>
-  );
-}`,
+      "The project was completed in 21 days, following a structured plan to ensure stability, security, and full functionality.",
     listItems: [
-      "Here's the logic, broken down:",
-      "1. We take the latest decibel reading and normalize it (convert the -60 to 0 dB range into a 0 to 1 value).",
-      "2. Then, we multiply that value by 40 and add a tiny bit of random variation--this is the secret to that cool 'wiggle' effect.",
-      "3. We push the new bar height into a buffer array, making sure it never gets bigger than 50 bars.",
-      "4. Finally, we render the array as a bunch of vertical bars in a row, which gives you that smooth scrolling effect.",
+      "Week 1 (Days 1–7): Project setup, Next.js frontend development, menu & cart implementation, 3-step checkout, Telegram login integration.",
+      "Week 2 (Days 8–14): NestJS backend API development, order forwarding, workflow logic, blacklist feature implementation using SQLite.",
+      "Week 3 (Days 15–21): QA & testing with concurrent orders, integration of frontend & backend, final bug fixes, deployment via Telegram Web App..",
     ],
   },
   {
-    id: BlogSections.MainApp,
-    title: "5. Putting It All Together in the Main App",
+    id: BlogSections.Deployment,
+    title: "Deployment & Hosting",
     content:
-      "Now for the easy part. We will combine our custom hook and the waveform component into a clean, simple UI. No extra fluff, just the core functionality.",
-    codeSnippet: `import { Text, TouchableOpacity, View } from "react-native";
-import useAudioRecorderHook from "./useAudioRecorderHook";
-import WaveformDisplay from "./waveForm";
-
-export default function AudioRecorderWithWaveform() {
-  const { recordingInProgress, currentDecibel, audioUri, startOrStopRecording, latestDecibel } =
-    useAudioRecorderHook();
-
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20 }}>
-      <Text style={{ marginBottom: 20, fontSize: 18, fontWeight: "bold" }}>Expo-Audio/WaveForm</Text>
-
-      <WaveformDisplay recordingInProgress={recordingInProgress} latestDecibel={latestDecibel} />
-
-      {currentDecibel != null && <Text style={{ marginBottom: 10 }}>{currentDecibel.toFixed(1)} dB</Text>}
-
-      <TouchableOpacity
-        onPress={startOrStopRecording}
-        style={{
-          padding: 10,
-          backgroundColor: recordingInProgress ? "#FF3B30" : "#007AFF",
-          borderRadius: 6,
-        }}
-      >
-        <Text style={{ color: "white" }}>{recordingInProgress ? "Stop" : "Record"}</Text>
-      </TouchableOpacity>
-
-      {/* This is the corrected footer */}
-      <Text style={{ marginTop: 20, fontSize: 14, color: "#888" }}>Made with love by Arian Khademolghorani (https://github.com/calledarian)</Text>
-    </View>
-  );
-}`,
+      "The Mini App frontend is hosted as a Telegram Web App using BotFather, while the backend API is hosted on Render. SQLite is used for lightweight and efficient data storage.",
     listItems: [
-      "Your UI is pretty straightforward:",
-      " - [A container for the scrolling waveform bars]",
-      " - [A little text display for the exact decibel number]",
-      " - [A simple Record/Stop button]",
+      "Frontend hosted via Telegram Web App using BotFather.",
+      "Backend API hosted on Render for fast and reliable performance.",
+      "SQLite database stores blacklisted IDs and other essential management data.",
     ],
   },
   {
     id: BlogSections.WhyThisWorks,
-    title: "6. So, Why Does This Work So Well?",
+    title: "Why This Project Was Successful",
     listItems: [
-      "You get live decibel readings, which is what makes a real-time waveform even possible.",
-      "The `ref` and `buffer` make sure your app runs smoothly, with no excessive re-renders.",
-      "The scrolling waveform feels natural because we&apos;re using a fixed buffer and a timed interval.",
-      "And that tiny bit of random variation? It&apos;s what gives the animation that perfect, WhatsApp-like wiggle.",
+      "Next.js frontend provides a fast, responsive, and smooth UI.",
+      "NestJS backend ensures reliable and low-latency API performance.",
+      "Telegram widget login ensures secure user authentication.",
+      "Blacklist feature prevents unwanted or malicious users from placing orders.",
+      "SQLite provides lightweight and efficient storage for management data.",
+      "Workflow buttons (Confirm, Preparing, Delivering, Complete) function as expected.",
+      "System handles multiple orders efficiently with real-time updates.",
+      "Integration of all assets ensures smooth operations without delays.",
     ],
   },
 ];
@@ -284,9 +120,9 @@ export default function BlogPage() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
-          headline: "Expo Audio Waveform Tutorial",
+          headline: "Telegram Restaurant Mini App Development",
           description:
-            "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native.",
+            "Step-by-step explanation of developing a Telegram Mini App for restaurant ordering and a Telegram Bot for order management.",
           author: { "@type": "Person", name: "Arian Khademolghorani" },
           publisher: {
             "@type": "Organization",
@@ -296,8 +132,8 @@ export default function BlogPage() {
               url: "https://arian.my/assets/logo.png",
             },
           },
-          datePublished: "2025-09-16",
-          dateModified: "2025-09-16",
+          datePublished: "2025-11-01",
+          dateModified: "2025-11-01",
         })}
       </Script>
 
@@ -309,24 +145,7 @@ export default function BlogPage() {
             gutterBottom
             sx={{ mb: { xs: 2, sm: 4 }, fontSize: { xs: "2rem", sm: "3rem" } }}
           >
-            Building an Audio Waveform in Expo Audio: IOS & ANDROID
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection={{ xs: "column", sm: "row" }}
-            gap={2}
-            justifyContent="center"
-            alignItems="center"
-            mb={4}
-          >
-          </Box>
-          <Typography paragraph>
-            Most tutorials for audio waveforms rely on outdated expo-av methods
-            that no longer work seamlessly in modern Expo apps. This guide
-            provides a practical, step-by-step approach to implementing a fully
-            functional audio waveform using expo-audio. Perfect for developers
-            who want a working solution for recording, visualizing, and managing
-            audio without the headaches of deprecated APIs.{" "}
+            Developed a Telegram Restaurant Mini App & Bot for Order Management
           </Typography>
 
           {blogSections.map((section, i) => (
@@ -401,9 +220,7 @@ export default function BlogPage() {
           ))}
 
           <Typography paragraph sx={{ mt: 4, fontStyle: "italic" }}>
-            And that is it! You now have a smooth, responsive audio recorder
-            with a cool waveform visualizer. This approach is more reliable and
-            gives you the tools you need to build something truly polished.
+            If you come this far, thank you.
           </Typography>
         </article>
       </Container>
@@ -413,53 +230,36 @@ export default function BlogPage() {
 
 // Metadata
 export const metadata = {
-  title: "Expo Audio Waveform Tutorial | React Native Audio Recording Guide",
+  title: "Telegram Restaurant Mini App | Order Management with Bot",
   description:
-    "Step-by-step guide to build a WhatsApp-style audio waveform using expo-audio in React Native. Live decibel readings, smooth animations, and recording hooks explained.",
+    "Learn how I developed a Telegram Mini App for restaurant ordering and a Telegram Bot for backend order management. Full workflow explained.",
   keywords: [
-    "expo-audio",
-    "react native audio recorder",
-    "audio waveform",
-    "expo tutorial",
-    "React Native recording",
-    "audio visualization",
+    "telegram mini app",
+    "restaurant ordering",
+    "telegram bot",
+    "order management",
+    "frontend backend integration",
   ],
   authors: [{ name: "Arian Khademolghorani", url: "https://arian.my" }],
   openGraph: {
-    title: "Expo Audio Waveform Tutorial",
+    title: "Telegram Restaurant Mini App Development",
     description:
-      "Learn how to build a live audio waveform in React Native using expo-audio.",
-    url: "https://arian.my/blog/waveform",
-    siteName: "Your Dev Blog",
+      "Step-by-step explanation of developing a Telegram Mini App and Telegram Bot for order management.",
+    url: "https://arian.my/blog/food-ordering-webapp",
+    siteName: "Arian.my Dev Blog",
     type: "article",
-    images: [
-      {
-        url: "https://arian.my/assets/waveform.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Expo Audio Waveform Tutorial",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Expo Audio Waveform Tutorial",
+    title: "Telegram Restaurant Mini App",
     description:
-      "Learn how to build a live audio waveform in React Native using expo-audio.",
-    images: [
-      {
-        url: "https://arian.my/assets/waveform.jpg",
-        alt: "Expo Audio Waveform Tutorial",
-        width: 1200,
-      },
-    ],
+      "Learn how I developed a Telegram Mini App and Bot for restaurant order management.",
   },
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://arian.my/blog/waveform",
+    canonical: "https://arian.my/blog/food-ordering-webapp",
     languages: {
-      "en-US": "https://arian.my/en/blog/waveform",
-      "tr-TR": "https://arian.my/tr/blog/waveform",
+      "en-US": "https://arian.my/en/blog/food-ordering-webapp",
     },
   },
 };

@@ -52,9 +52,9 @@ const PROJECTS: ProjectCard[] = [
   {
     id: 3,
     title: "Food Ordering WebApp",
-    path: "coming-soon.jpg",
+    path: "SHW/new_order.jpg",
     description:
-      "Created a Telegram-based food ordering application that streamlines communication between customers, managers, and staff. Customers place orders directly through the bot, managers approve requests, and workers receive real-time notifications—eliminating delays and reducing miscommunication.",
+      "This blog describes a Telegram Mini App built with Next.js and NestJS, allowing customers to place restaurant orders while the backend bot manages workflows efficiently.",
     href: "/blog/food-ordering-webapp"
   },
 ];

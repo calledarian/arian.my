@@ -31,6 +31,14 @@ const BLOGS: BlogsCard[] = [
       "Most tutorials for audio waveforms rely on outdated expo-av methods that no longer work seamlessly in modern Expo apps. This guide provides a practical, step-by-step approach to implementing a fully functional audio waveform using expo-audio. Perfect for developers who want a working solution for recording, visualizing, and managing audio without the headaches of deprecated APIs.",
     href: "/blog/expo-audio-waveform",
   },
+  {
+    id: 2,
+    title: "Developed a Telegram Restaurant Mini App & Bot for Order Management",
+    path: ["SHW/new_order.jpg"],
+    description:
+      "This blog describes a Telegram Mini App built with Next.js and NestJS, allowing customers to place restaurant orders while the backend bot manages workflows efficiently.",
+    href: "/blog/food-ordering-webapp",
+  },
 ];
 
 const BlogCard = ({ blog }: { blog: BlogsCard }) => {
@@ -50,7 +58,7 @@ const BlogCard = ({ blog }: { blog: BlogsCard }) => {
             sx={{
               background: "var(--card-color)",
               color: "var(--card-text)",
-              minHeight: 220,
+              height: 220,
             }}
           >
             <Typography gutterBottom variant="h5" component="div">
