@@ -11,16 +11,21 @@ import {
   Switch,
   Container,
   Badge,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import Link from "next/link";
 
-// ------------------------------
-// Styled Badge with ripple effect
-// ------------------------------
+// Styled Badge
 const BrandBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    width: 20, // badge dot size
+    width: 20,
     height: 20,
     borderRadius: "50%",
     backgroundColor: "#44b700",
@@ -44,24 +49,18 @@ const BrandBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-// ------------------------------
-// Navbar Component
-// ------------------------------
 export default function NavigationBar() {
   const [darkMode, setDarkMode] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Initialize dark mode
   useEffect(() => {
     const saved = localStorage.getItem("darkMode");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const mode = saved !== null ? saved === "true" : prefersDark;
     setDarkMode(mode);
     document.body.classList.toggle("dark", mode);
   }, []);
 
-  // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
       const newMode = !prev;
@@ -71,9 +70,8 @@ export default function NavigationBar() {
     });
   };
 
-  // ------------------------------
-  // Avatar + Text Section
-  // ------------------------------
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
   const BrandSection = (
     <Box sx={{ display: "flex", alignItems: "center", gap: 3, height: "100%" }}>
       <BrandBadge
@@ -84,19 +82,14 @@ export default function NavigationBar() {
         <Avatar
           src="/arian/arian-khademolghorani.jpg"
           alt="Arian Khademolghorani"
-          sx={{
-            width: { xs: 80, sm: 100, md: 120 },
-            height: { xs: 80, sm: 100, md: 120 },
-          }}
+          sx={{ width: { xs: 60, sm: 80, md: 100 }, height: { xs: 60, sm: 80, md: 100 } }}
         />
       </BrandBadge>
       <Typography
         variant="h6"
         sx={{
-          fontSize: { xs: "1.4rem", sm: "1.8rem", md: "2rem" }, // bigger for brand avatar
-          fontWeight: 700, // bold
-          lineHeight: 1.2,
-          letterSpacing: 0.5, // optional, improves readability
+          fontSize: { xs: "1rem", sm: "1.4rem", md: "2rem" },
+          fontWeight: 700,
         }}
       >
         Software Developer
@@ -104,11 +97,8 @@ export default function NavigationBar() {
     </Box>
   );
 
-  // ------------------------------
-  // Navigation Links + Switch
-  // ------------------------------
   const NavLinks = (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+    <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 2 }}>
       <Switch checked={darkMode} onChange={toggleDarkMode} />
       <Button color="inherit" LinkComponent={Link} href="/">
         Home
@@ -119,25 +109,53 @@ export default function NavigationBar() {
     </Box>
   );
 
-  // ------------------------------
-  // Render Navbar
-  // ------------------------------
+  const MobileDrawer = (
+    <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
+      <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle}>
+        <List>
+          <ListItem>
+            <Switch checked={darkMode} onChange={toggleDarkMode} />
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton component={Link} href="/">
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton component={Link} href="/blog">
+              <ListItemText primary="Blog" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+    </Drawer>
+  );
+
   return (
-    <AppBar position="sticky" color="transparent" elevation={0} sx={{ top: 0 }}>
+    <AppBar position="sticky" color="transparent" elevation={0}>
       <Container maxWidth="lg">
         <Toolbar
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            minHeight: { xs: 100, sm: 120, md: 140 },
-            py: 2,
+            minHeight: { xs: 80, sm: 100, md: 120 },
           }}
         >
           {BrandSection}
           {NavLinks}
+          {/* Mobile menu icon */}
+          <IconButton
+            color="inherit"
+            edge="end"
+            sx={{ display: { xs: "flex", md: "none" } }}
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </Container>
+      {MobileDrawer}
     </AppBar>
   );
 }
