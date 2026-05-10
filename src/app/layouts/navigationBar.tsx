@@ -136,6 +136,11 @@ export default function NavigationBar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
+            <ListItemButton component={Link} href="/about">
+              <ListItemText primary="About" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
             <ListItemButton component={Link} href="/blog">
               <ListItemText primary="Blog" />
             </ListItemButton>
