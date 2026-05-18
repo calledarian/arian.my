@@ -52,6 +52,16 @@ const BLOGS: BlogsCard[] = [
     tag: "Telegram",
     tagColor: "purple",
   },
+  {
+    id: 4,
+    title: "Expo Audio Waveform Visualizer",
+    thumbnail: "/EXPO/waveform.jpg",
+    description:
+      "A visualizer for expo audio waveforms, showcasing real-time audio processing capabilities.",
+    href: "/blog/expo-audio-waveform",
+    tag: "Audio",
+    tagColor: "teal",
+  },
 ];
 
 export default function BlogsPage() {
