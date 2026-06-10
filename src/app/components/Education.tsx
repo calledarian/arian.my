@@ -24,7 +24,7 @@ const EXPERIENCE: ExperienceItem[] = [
     {
         title: "Founder & Software Engineer",
         org: "Ariel Solutions",
-        desc: "Designed and delivered full-stack systems including CMS platforms, booking engines, Telegram Mini Apps, dashboards, and automation tools. Responsible for architecture, development, deployment, and maintenance.",
+        desc: "Designed full-stack systems including CMS platforms, booking engines, Telegram Mini Apps, dashboards, and automation tools. Responsible for architecture, development, deployment, and maintenance.",
         type: "job",
     },
     {
@@ -36,7 +36,7 @@ const EXPERIENCE: ExperienceItem[] = [
     {
         title: "Freelance Full-Stack Developer",
         org: "ReactJS · NestJS · PostgreSQL",
-        desc: "Independently delivered full-stack applications for clients across different industries, handling requirements gathering, development, and deployment end-to-end.",
+        desc: "Built full-stack applications, handling requirements gathering, development, and deployment end-to-end.",
         type: "job",
     },
 ];
@@ -99,7 +99,7 @@ const LEARNING: ExperienceItem[] = [
 ];
 
 const TYPE_CHIP: Record<SectionType, { label: string; bg: string; color: string }> = {
-    job: { label: "Work", bg: "#E1F5EE", color: "#085041" },
+    job: { label: "Experience", bg: "#E1F5EE", color: "#085041" },
     education: { label: "Education", bg: "#E6F1FB", color: "#0C447C" },
     certificate: { label: "Certificate", bg: "#EEEDFE", color: "#3C3489" },
     learning: { label: "Learning", bg: "#FAEEDA", color: "#633806" },
@@ -324,12 +324,10 @@ export default function AboutPage() {
                     <Typography
                         sx={{ fontSize: "16px", lineHeight: 1.9, color: "var(--tech-color)", maxWidth: 600, mb: 3, fontWeight: 400 }}
                     >
-                        I build software that businesses actually use. Started coding with JavaScript,
+                        Started coding with JavaScript,
                         went through CS50, interned at Web Essentials, and now run{" "}
                         <Box component="span" sx={{ color: "var(--card-color)", fontWeight: 700 }}>Ariel Solutions</Box>
-                        {" "}— where I ship CMS platforms, booking systems, Telegram Mini Apps,
-                        and whatever else clients need built properly. Full stack, TypeScript heavy,
-                        always learning.
+                        {" "}— where I build CMS platforms, booking systems, Telegram Mini Apps...
                     </Typography>
                 </Box>
             </FadeIn>

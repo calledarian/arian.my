@@ -95,15 +95,6 @@ export default function NavigationBar() {
         >
           Arian Khademolghorani
         </Typography>
-
-        <Typography
-          sx={{
-            fontSize: "0.85rem",
-            opacity: 0.7,
-          }}
-        >
-          Building Business Software Systems
-        </Typography>
       </Box>
     </Box>
   );

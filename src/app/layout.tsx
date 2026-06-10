@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Full-stack developer building scalable web applications, CMS platforms, dashboards, API integrations, and business software solutions using Next.js and NestJS.",
+    "Full-stack developer building scalable web applications, CMS platforms, dashboards, API integrations, software solutions using Next.js and NestJS.",
 
   keywords: [
     "Arian Khadem",
@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     "CMS Development",
     "Dashboard Development",
     "API Integration",
-    "Business Software",
     "Web Development",
     "Automation Systems",
     "Custom Software Solutions",
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Arian Khadem — Full-Stack Developer",
     description:
-      "Building modern business systems, scalable web applications, dashboards, CMS platforms, and API integrations tailored for real-world operations.",
+      "Building systems, scalable web applications, dashboards, CMS platforms, and API integrations tailored for real-world operations.",
     url: siteUrl,
     siteName: "Arian Khadem Portfolio",
     images: [
@@ -103,11 +102,11 @@ export default function RootLayout({
     image: `${siteUrl}/arian/arian-khademolghorani.jpg`,
     jobTitle: "Full-Stack Software Developer",
     description:
-      "Full-stack developer focused on scalable business software, CMS platforms, dashboards, automation systems, and API integrations.",
+      "Full-stack developer focused on scalable software, CMS platforms, dashboards, automation systems, and API integrations.",
     knowsAbout: [
       "Next.js", "React", "NestJS", "TypeScript",
       "API Integration", "CMS Development", "Dashboard Development",
-      "Automation Systems", "Full-Stack Development", "Business Software",
+      "Automation Systems", "Full-Stack Development", "Software",
     ],
     sameAs: [
       "https://github.com/calledarian",

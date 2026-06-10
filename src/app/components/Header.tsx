@@ -47,7 +47,6 @@ enum Skill {
     Booking = 'booking & reservation systems',
     Dashboards = 'management dashboards',
     Automation = 'automation workflows',
-    APIs = 'API-driven business systems',
 }
 
 // Technologies
