@@ -1,49 +1,48 @@
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --icon-color: #111111;
-  --link-color: #111111;
-  --card-color: #111111;
-  --card-text: #ffffff;
-  --tech-color: #555555;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --accent: #111111;
+  --background: #fdfaf3; /* Soft cream background */
+  --foreground: #26547c; /* Deep Blue from palette for text */
+  --border-color: rgba(38, 84, 124, 0.15); /* Subtile Deep Blue borders */
+  --grid-color: rgba(38, 84, 124, 0.05); /* Very subtle grid */
 
-  --timeline-job: #111111;
-  --timeline-education: #555555;
-  --timeline-certificate: #888888;
-  --timeline-learning: #aaaaaa;
+  --accent-orange: #ff5e29;
+  --soft-orange: #ff8257;
+  --peach: #ffb191;
+  --sage: #7fb685;
+  --deep-blue: #26547c;
+  --sky-blue: #c4d7f2;
+
+  --tech-color: #5b7a94; /* Muted version of deep blue */
+  --mono-font: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* Tag Color Mappings */
+  --tag-blue-bg: var(--sky-blue);
+  --tag-blue-text: var(--deep-blue);
+  --tag-teal-bg: var(--sage);
+  --tag-teal-text: #ffffff;
+  --tag-purple-bg: var(--peach);
+  --tag-purple-text: var(--deep-blue);
+  --tag-orange-bg: var(--soft-orange);
+  --tag-orange-text: #ffffff;
+  --tag-green-bg: var(--sage);
+  --tag-green-text: #ffffff;
 }
 
-body.dark {
-  --background: #0f0f0f;
-  --foreground: #f0f0f0;
-  --icon-color: #f0f0f0;
-  --link-color: #f0f0f0;
-  --card-color: #f0f0f0;
-  --card-text: #0f0f0f;
-  --tech-color: #999999;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --accent: #f0f0f0;
-
-  --timeline-job: #f0f0f0;
-  --timeline-education: #999999;
-  --timeline-certificate: #666666;
-  --timeline-learning: #444444;
+html {
+  scroll-behavior: smooth;
 }
 
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  font-family: 'DM Sans', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), 'Helvetica Neue', Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--foreground);
-  transition: background-color 0.3s, color 0.3s;
 }
 
 * {
@@ -51,6 +50,10 @@ body {
 }
 
 a {
-  color: var(--link-color);
+  color: inherit;
   text-decoration: none;
+}
+
+.mono {
+  font-family: var(--mono-font);
 }

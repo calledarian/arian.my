@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import Script from "next/script";
-import { Container } from "@mui/material";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme';
+import { Box } from "@mui/material";
 
 import "./globals.css";
 
@@ -115,7 +118,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="en" className={dmSans.variable} suppressHydrationWarning>
       <body
         style={{
           display: "flex",
@@ -124,39 +127,39 @@ export default function RootLayout({
           fontFamily: "var(--font-dm-sans), 'Helvetica Neue', Helvetica, sans-serif",
         }}
       >
-        <Script
-          id="structured-data"
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {JSON.stringify(structuredData)}
-        </Script>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <Script
+              id="structured-data"
+              type="application/ld+json"
+              strategy="afterInteractive"
+            >
+              {JSON.stringify(structuredData)}
+            </Script>
 
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          strategy="afterInteractive"
-        />
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
 
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){ dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-          `}
-        </Script>
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
 
-        <NavigationBar />
+            <NavigationBar />
 
-        <Container
-          component="main"
-          maxWidth="lg"
-          sx={{ flex: 1, py: { xs: 4, md: 8 } }}
-        >
-          {children}
-        </Container>
+            <Box component="main" sx={{ flex: 1 }}>
+              {children}
+            </Box>
 
-        <Footer />
+            <Footer />
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

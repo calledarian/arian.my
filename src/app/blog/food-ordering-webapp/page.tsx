@@ -231,7 +231,7 @@ export default function BlogPage() {
                 </Typography>
 
                 {section.content && (
-                  <Typography paragraph sx={{ mt: 1, color: "var(--tech-color)" }}>
+                  <Typography component="p" sx={{ mt: 1, color: "var(--tech-color)", mb: 2 }}>
                     {section.content}
                   </Typography>
                 )}
@@ -272,7 +272,7 @@ export default function BlogPage() {
             </FadeIn>
           ))}
 
-          <Typography paragraph sx={{ mt: 4, fontStyle: "italic" }}>
+          <Typography component="p" sx={{ mt: 4, fontStyle: "italic", mb: 2 }}>
             If you come this far, thank you.
           </Typography>
         </article>

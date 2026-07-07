@@ -348,10 +348,13 @@ export default function BlogPage() {
         <article>
           <Typography
             variant="h3"
-            component="h1"
-            fontWeight={800}
             gutterBottom
-            sx={{ mb: { xs: 2, sm: 3 }, fontSize: { xs: "2.25rem", sm: "3.5rem" }, lineHeight: 1.2 }}
+            sx={{
+              mb: { xs: 2, sm: 3 },
+              fontSize: { xs: "2.25rem", sm: "3.5rem" },
+              lineHeight: 1.2,
+              fontWeight: 800,
+            }}
           >
             Building an Audio Waveform in Expo Audio: iOS & Android
           </Typography>
@@ -363,7 +366,7 @@ export default function BlogPage() {
             Ditch the deprecated expo-av API. Build a highly fluid, live-metered audio track recorder with custom visual buffers.
           </Typography>
 
-          <Box display="flex" justifyContent="center" alignItems="center" mb={6}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 6 }}>
             <Box sx={{ position: "relative", width: "100%", height: 700, borderRadius: 3, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }}>
               <Image
                 src="/EXPO/expo-audio-soundwave.jpg"
@@ -390,13 +393,12 @@ export default function BlogPage() {
               >
                 <Typography
                   variant="h5"
-                  component="h2"
-                  fontWeight={700}
                   gutterBottom
                   sx={{
                     fontSize: { xs: "1.35rem", sm: "1.75rem" },
                     color: "var(--card-color, #1a1a1a)",
                     mb: 2,
+                    fontWeight: 700,
                   }}
                 >
                   {section.title}
@@ -465,7 +467,7 @@ export default function BlogPage() {
           ))}
 
           <Box sx={{ mt: 6, p: 4, borderRadius: 2, backgroundColor: "rgba(0, 122, 255, 0.05)", borderLeft: "4px solid #007AFF" }}>
-            <Typography variant="h6" fontWeight={700} gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
               Wrapping Up
             </Typography>
             <Typography sx={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#4a4a4a" }}>

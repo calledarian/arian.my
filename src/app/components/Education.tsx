@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Container, Typography, Box, Chip, Modal, Fade } from "@mui/material";
+import { Box, Typography, Modal, Fade, Chip } from "@mui/material";
 import Image from "next/image";
 import FadeIn from "../utils/fadeIn";
 
-type SectionType = "job" | "education" | "certificate" | "learning";
+type SectionType = "job" | "education" | "certificate" | "learning" | "development";
 
 interface CertImage {
     src: string;
@@ -16,28 +16,32 @@ interface ExperienceItem {
     title: string;
     org?: string;
     desc: string;
+    year?: string;
     type: SectionType;
     images?: CertImage[];
 }
 
 const EXPERIENCE: ExperienceItem[] = [
     {
-        title: "Founder & Software Engineer",
-        org: "Ariel Solutions",
-        desc: "Designed full-stack systems including CMS platforms, booking engines, Telegram Mini Apps, dashboards, and automation tools. Responsible for architecture, development, deployment, and maintenance.",
-        type: "job",
+        title: "Software Engineer",
+        org: "",
+        year: "2026 - 2027",
+        desc: "Build stuff. Maintain stuff. Ship stuff. Expand my learning and experience acroos platforms, languages, and frameworks. Not just a developer, but a solution architect and problem solver.",
+        type: "development",
     },
     {
         title: "Cross-Platform Software Developer Intern",
         org: "Web Essentials Co., Ltd.",
-        desc: "Contributed to cross-platform applications and backend systems within a professional development team, gaining experience working in a production environment with structured workflows and deadlines.",
-        type: "job",
+        year: "2025 - 2026",
+        desc: "Contributed to cross-platform applications and backend systems within a professional development team, gaining experience in production workflows.",
+        type: "development",
     },
     {
-        title: "Freelance Full-Stack Developer",
-        org: "ReactJS · NestJS · PostgreSQL",
-        desc: "Built full-stack applications, handling requirements gathering, development, and deployment end-to-end.",
-        type: "job",
+        title: "Developer Student",
+        org: "Self Thought Student",
+        year: "2024 - 2025",
+        desc: "Built full-stack applications using ReactJS, NestJS, and PostgreSQL, handling requirements gathering and deployment end-to-end.",
+        type: "development",
     },
 ];
 
@@ -45,7 +49,8 @@ const EDUCATION: ExperienceItem[] = [
     {
         title: "CS50: Introduction to Computer Science",
         org: "Harvard University",
-        desc: "Algorithms, data structures, memory, system design. This is where programming clicked at a deeper level — not just writing code but understanding what it's actually doing.",
+        year: "2025",
+        desc: "Algorithms, data structures, and system design. This is where programming clicked at a deeper level — not just writing code but understanding what it's actually doing.",
         type: "education",
         images: [
             { src: "/arian/cs50.png", alt: "CS50 Certificate" },
@@ -54,11 +59,9 @@ const EDUCATION: ExperienceItem[] = [
     {
         title: "Computer Programming — JavaScript & the Web",
         org: "Khan Academy",
-        desc: "Where it started. JS fundamentals, DOM manipulation, how browsers work. The foundation everything else is built on.",
+        year: "2024 - 2025",
+        desc: "JS fundamentals, DOM manipulation, how browsers work. The foundation everything else is built on.",
         type: "education",
-        images: [
-            // { src: "/certs/khan-academy.png", alt: "Khan Academy Certificate" },
-        ],
     },
 ];
 
@@ -66,6 +69,7 @@ const CERTIFICATES: ExperienceItem[] = [
     {
         title: "Postman API Fundamentals Student Expert",
         org: "Postman",
+        year: "2025",
         desc: "REST API design, testing, auth flows, and integration patterns. Every backend project I ship gets tested this way.",
         type: "certificate",
         images: [
@@ -75,6 +79,7 @@ const CERTIFICATES: ExperienceItem[] = [
     {
         title: "AI Introduction Certification",
         org: "TAFE",
+        year: "2025",
         desc: "ML principles, data-driven systems, and practical AI applications. Already using this to build smarter automation into production projects.",
         type: "certificate",
         images: [
@@ -87,33 +92,27 @@ const LEARNING: ExperienceItem[] = [
     {
         title: "CS50: Cybersecurity",
         org: "Harvard University",
-        desc: "Threat models, cryptography, authentication, and building systems that don't get owned. In progress.",
+        year: "In Progress",
+        desc: "Threat models, cryptography, authentication, and building systems that don't get owned.",
         type: "learning",
     },
     {
         title: "Artificial Intelligence — Applied",
         org: "TAFE",
-        desc: "Going deeper — model integration, intelligent automation, building AI into real software workflows. In progress.",
+        year: "In Progress",
+        desc: "Model integration, intelligent automation, building AI into real software workflows.",
         type: "learning",
     },
 ];
 
-const TYPE_CHIP: Record<SectionType, { label: string; bg: string; color: string }> = {
-    job: { label: "Experience", bg: "#E1F5EE", color: "#085041" },
-    education: { label: "Education", bg: "#E6F1FB", color: "#0C447C" },
-    certificate: { label: "Certificate", bg: "#EEEDFE", color: "#3C3489" },
-    learning: { label: "Learning", bg: "#FAEEDA", color: "#633806" },
+const TYPE_CHIP: Record<SectionType, { bg: string; color: string }> = {
+    job: { bg: "var(--tag-teal-bg)", color: "var(--tag-teal-text)" },
+    education: { bg: "var(--tag-blue-bg)", color: "var(--tag-blue-text)" },
+    certificate: { bg: "var(--tag-purple-bg)", color: "var(--tag-purple-text)" },
+    learning: { bg: "var(--tag-orange-bg)", color: "var(--tag-orange-text)" },
+    development: { bg: "var(--tag-green-bg)", color: "var(--tag-green-text)" },
 };
 
-const STACK = ["TypeScript", "Node.js", "React", "Next.js", "NestJS", "PostgreSQL", "Python", "Material UI", "Expo.js"];
-
-const LINKS = [
-    { label: "GitHub", href: "https://github.com/calledarian" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/arian-khademolghorani" },
-    { label: "Telegram", href: "https://t.me/calledarian" },
-];
-
-// --- Expandable image ---
 function CertImageGrid({ images }: { images: CertImage[] }) {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState<CertImage | null>(null);
@@ -132,7 +131,7 @@ function CertImageGrid({ images }: { images: CertImage[] }) {
                     display: "grid",
                     gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" },
                     gap: 2,
-                    mt: 2,
+                    mt: 3,
                 }}
             >
                 {images.map((img, idx) => (
@@ -143,14 +142,13 @@ function CertImageGrid({ images }: { images: CertImage[] }) {
                             position: "relative",
                             width: "100%",
                             aspectRatio: "16 / 10",
-                            borderRadius: "10px",
+                            borderRadius: "4px",
                             overflow: "hidden",
                             cursor: "zoom-in",
-                            border: "0.5px solid rgba(0,0,0,0.08)",
-                            transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                            border: "1px solid var(--border-color)",
+                            transition: "transform 0.25s ease",
                             "&:hover": {
-                                transform: "translateY(-3px) scale(1.01)",
-                                boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
+                                transform: "scale(1.02)",
                             },
                         }}
                     >
@@ -171,12 +169,13 @@ function CertImageGrid({ images }: { images: CertImage[] }) {
                         sx={{
                             position: "fixed",
                             inset: 0,
-                            bgcolor: "rgba(0,0,0,0.85)",
+                            bgcolor: "rgba(0,0,0,0.9)",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             cursor: "zoom-out",
                             p: 2,
+                            zIndex: 9999,
                         }}
                     >
                         {selected && (
@@ -184,10 +183,8 @@ function CertImageGrid({ images }: { images: CertImage[] }) {
                                 sx={{
                                     position: "relative",
                                     width: "100%",
-                                    maxWidth: 900,
+                                    maxWidth: 1000,
                                     aspectRatio: "16 / 10",
-                                    borderRadius: "12px",
-                                    overflow: "hidden",
                                 }}
                             >
                                 <Image
@@ -205,161 +202,99 @@ function CertImageGrid({ images }: { images: CertImage[] }) {
     );
 }
 
-// --- Card ---
-function AboutCard({ item, delay }: { item: ExperienceItem; delay: number }) {
-    const chip = TYPE_CHIP[item.type];
+function GridRow({ item, index }: { item: ExperienceItem; index: number }) {
+    const chipStyle = TYPE_CHIP[item.type];
     return (
-        <FadeIn delay={delay}>
-            <Box
-                sx={{
-                    background: "var(--background)",
-                    border: "0.5px solid rgba(0,0,0,0.1)",
-                    borderRadius: "16px",
-                    p: "1.25rem 1.5rem",
-                    height: "100%",
-                    transition: "box-shadow 0.2s ease, border-color 0.2s ease",
-                    "&:hover": {
-                        borderColor: "rgba(0,0,0,0.18)",
-                        boxShadow: "0 8px 24px rgba(0,0,0,0.07)",
-                    },
-                }}
-            >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1, flexWrap: "wrap" }}>
-                    <Chip
-                        label={chip.label}
-                        size="small"
-                        sx={{
-                            height: 22,
-                            fontSize: 11,
-                            fontWeight: 700,
-                            letterSpacing: "0.05em",
-                            textTransform: "uppercase",
-                            background: chip.bg,
-                            color: chip.color,
-                            border: "none",
-                            borderRadius: "6px",
-                        }}
-                    />
-                    {item.org && (
-                        <Typography sx={{ fontSize: "13px", color: "var(--tech-color)", opacity: 0.65, fontWeight: 500 }}>
-                            {item.org}
-                        </Typography>
-                    )}
-                </Box>
-
-                <Typography
-                    sx={{ fontSize: "17px", fontWeight: 800, color: "var(--foreground)", mb: 0.75, lineHeight: 1.3 }}
-                >
-                    {item.title}
-                </Typography>
-
-                <Typography
-                    sx={{ fontSize: "14px", lineHeight: 1.75, color: "var(--tech-color)", fontWeight: 400 }}
-                >
-                    {item.desc}
-                </Typography>
-
-                {item.images && item.images.length > 0 && (
-                    <CertImageGrid images={item.images} />
-                )}
-            </Box>
-        </FadeIn>
-    );
-}
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-    return (
-        <Typography
+        <Box
             sx={{
-                fontSize: { xs: "11px", sm: "11px" },
-                fontWeight: 800,
-                color: "var(--card-color)",
-                mb: 2,
-                mt: 5,
-                pb: 1,
-                borderBottom: "0.5px solid rgba(0,0,0,0.08)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "250px 1fr" },
+                gap: { xs: 2, md: 4 },
+                py: 5,
+                borderTop: "1px solid var(--border-color)",
             }}
         >
-            {children}
-        </Typography>
+            <FadeIn delay={index * 100}>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                    <Typography className="mono" sx={{ fontSize: "12px", color: "var(--tech-color)", fontWeight: 600 }}>
+                        {item.year}
+                    </Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 700 }}>
+                        {item.org}
+                    </Typography>
+                    <Chip
+                        label={item.type.toUpperCase()}
+                        size="small"
+                        sx={{
+                            alignSelf: "flex-start",
+                            height: 20,
+                            fontSize: "10px",
+                            fontWeight: 700,
+                            borderRadius: "4px",
+                            bgcolor: chipStyle.bg,
+                            color: chipStyle.color,
+                        }}
+                    />
+                </Box>
+            </FadeIn>
+
+            <FadeIn delay={index * 100 + 50}>
+                <Typography sx={{ fontSize: "18px", fontWeight: 800, mb: 1.5 }}>
+                    {item.title}
+                </Typography>
+                <Typography sx={{ fontSize: "15px", color: "var(--tech-color)", lineHeight: 1.8, maxWidth: 650 }}>
+                    {item.desc}
+                </Typography>
+                {item.images && <CertImageGrid images={item.images} />}
+            </FadeIn>
+        </Box>
     );
 }
 
 export default function AboutPage() {
     return (
-        <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
+        <Box>
+            <Box sx={{ mb: 8 }}>
+                <Typography sx={{ fontSize: "22px", lineHeight: 1.6, color: "var(--foreground)", maxWidth: 750, fontWeight: 500 }}>
+                    I build reliable software for the web. From CMS platforms to automation workflows, I enjoy solving technical problems that have real-world impact.
+                </Typography>
+            </Box>
 
-            <FadeIn delay={0}>
-                <Box sx={{ mb: 4 }}>
-                    <Typography
-                        component="h1"
-                        sx={{
-                            fontSize: { xs: "2.2rem", sm: "3rem" },
-                            fontWeight: 900,
-                            color: "var(--foreground)",
-                            mb: 0.5,
-                            lineHeight: 1.1,
-                            letterSpacing: "-0.02em",
-                        }}
-                    >
-                        Arian Khademolghorani
-                    </Typography>
-
-                    <Typography
-                        sx={{
-                            fontSize: "12px",
-                            color: "var(--tech-color)",
-                            opacity: 0.55,
-                            mb: 2.5,
-                            letterSpacing: "0.1em",
-                            textTransform: "uppercase",
-                            fontWeight: 600,
-                        }}
-                    >
-                        Calledarian · Phnom Penh, Cambodia
-                    </Typography>
-
-                    <Typography
-                        sx={{ fontSize: "16px", lineHeight: 1.9, color: "var(--tech-color)", maxWidth: 600, mb: 3, fontWeight: 400 }}
-                    >
-                        Started coding with JavaScript,
-                        went through CS50, interned at Web Essentials, and now run{" "}
-                        <Box component="span" sx={{ color: "var(--card-color)", fontWeight: 700 }}>Ariel Solutions</Box>
-                        {" "}— where I build CMS platforms, booking systems, Telegram Mini Apps...
-                    </Typography>
-                </Box>
-            </FadeIn>
-
-            <SectionHeading>Experience</SectionHeading>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Typography className="mono" sx={{ fontSize: "12px", color: "var(--tech-color)", mb: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                {"//"} Experience
+            </Typography>
+            <Box sx={{ borderBottom: "1px solid var(--border-color)", mb: 10 }}>
                 {EXPERIENCE.map((item, i) => (
-                    <AboutCard key={item.title} item={item} delay={i * 100} />
+                    <GridRow key={item.title} item={item} index={i} />
                 ))}
             </Box>
 
-            <SectionHeading>Education</SectionHeading>
-            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" }, gap: 2 }}>
+            <Typography className="mono" sx={{ fontSize: "12px", color: "var(--tech-color)", mb: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                {"//"} Education
+            </Typography>
+            <Box sx={{ borderBottom: "1px solid var(--border-color)", mb: 10 }}>
                 {EDUCATION.map((item, i) => (
-                    <AboutCard key={item.title} item={item} delay={i * 100} />
+                    <GridRow key={item.title} item={item} index={i} />
                 ))}
             </Box>
 
-            <SectionHeading>Certifications</SectionHeading>
-            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" }, gap: 2 }}>
+            <Typography className="mono" sx={{ fontSize: "12px", color: "var(--tech-color)", mb: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                {"//"} Certifications
+            </Typography>
+            <Box sx={{ borderBottom: "1px solid var(--border-color)", mb: 10 }}>
                 {CERTIFICATES.map((item, i) => (
-                    <AboutCard key={item.title} item={item} delay={i * 100} />
+                    <GridRow key={item.title} item={item} index={i} />
                 ))}
             </Box>
 
-            <SectionHeading>Currently Learning</SectionHeading>
-            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" }, gap: 2 }}>
+            <Typography className="mono" sx={{ fontSize: "12px", color: "var(--tech-color)", mb: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                {"//"} Currently Learning
+            </Typography>
+            <Box sx={{ borderBottom: "1px solid var(--border-color)" }}>
                 {LEARNING.map((item, i) => (
-                    <AboutCard key={item.title} item={item} delay={i * 100} />
+                    <GridRow key={item.title} item={item} index={i} />
                 ))}
             </Box>
-
-        </Container>
+        </Box>
     );
 }

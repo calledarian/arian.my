@@ -175,7 +175,6 @@ export default function CMSPage() {
           author: { "@type": "Person", name: "Arian Khademolghorani" },
           publisher: {
             "@type": "Organization",
-            name: "Ariel Solutions",
           },
         })}
       </Script>
