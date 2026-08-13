@@ -187,7 +187,7 @@ export default function BlogPage() {
             name: "Arian.my",
             logo: {
               "@type": "ImageObject",
-              url: "https://arian.my/assets/logo.png",
+              url: "https://arian.cheddybytes.com/assets/logo.png",
             },
           },
           datePublished: "2025-11-01",
@@ -292,12 +292,12 @@ export const metadata = {
     "order management",
     "frontend backend integration",
   ],
-  authors: [{ name: "Arian Khademolghorani", url: "https://arian.my" }],
+  authors: [{ name: "Arian Khademolghorani", url: "https://arian.cheddybytes.com" }],
   openGraph: {
     title: "Telegram Restaurant Mini App Development",
     description:
       "Step-by-step explanation of developing a Telegram Mini App and Telegram Bot for order management.",
-    url: "https://arian.my/blog/food-ordering-webapp",
+    url: "https://arian.cheddybytes.com/blog/food-ordering-webapp",
     siteName: "Arian.my Dev Blog",
     type: "article",
   },
@@ -309,6 +309,6 @@ export const metadata = {
   },
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://arian.my/blog/food-ordering-webapp",
+    canonical: "https://arian.cheddybytes.com/blog/food-ordering-webapp",
   },
 };

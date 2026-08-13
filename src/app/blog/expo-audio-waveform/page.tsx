@@ -336,7 +336,7 @@ export default function BlogPage() {
             name: "Arian.my",
             logo: {
               "@type": "ImageObject",
-              url: "https://arian.my/assets/logo.png",
+              url: "https://arian.cheddybytes.com/assets/logo.png",
             },
           },
           datePublished: "2025-09-16",
@@ -493,16 +493,16 @@ export const metadata = {
     "React Native recording",
     "audio visualization",
   ],
-  authors: [{ name: "Arian Khademolghorani", url: "https://arian.my" }],
+  authors: [{ name: "Arian Khademolghorani", url: "https://arian.cheddybytes.com" }],
   openGraph: {
     title: "Expo Audio Waveform Tutorial",
     description: "Learn how to build a live audio waveform in React Native using expo-audio.",
-    url: "https://arian.my/blog/waveform",
+    url: "https://arian.cheddybytes.com/blog/waveform",
     siteName: "Arian.my Dev Blog",
     type: "article",
     images: [
       {
-        url: "https://arian.my/assets/EXPO/expo-audio-soundwave.jpg",
+        url: "https://arian.cheddybytes.com/assets/EXPO/expo-audio-soundwave.jpg",
         width: 1200,
         height: 630,
         alt: "Expo Audio Waveform Tutorial",
@@ -515,7 +515,7 @@ export const metadata = {
     description: "Learn how to build a live audio waveform in React Native using expo-audio.",
     images: [
       {
-        url: "https://arian.my/assets/EXPO/expo-audio-soundwave.jpg",
+        url: "https://arian.cheddybytes.com/assets/EXPO/expo-audio-soundwave.jpg",
         alt: "Expo Audio Waveform Tutorial",
         width: 1200,
       },
@@ -523,10 +523,10 @@ export const metadata = {
   },
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://arian.my/blog/waveform",
+    canonical: "https://arian.cheddybytes.com/blog/waveform",
     languages: {
-      "en-US": "https://arian.my/en/blog/waveform",
-      "tr-TR": "https://arian.my/tr/blog/waveform",
+      "en-US": "https://arian.cheddybytes.com/en/blog/waveform",
+      "tr-TR": "https://arian.cheddybytes.com/tr/blog/waveform",
     },
   },
 };

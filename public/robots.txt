@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://arian.my
+Host: https://arian.cheddybytes.com
 
 # Sitemaps
-Sitemap: https://arian.my/sitemap.xml
+Sitemap: https://arian.cheddybytes.com/sitemap.xml
