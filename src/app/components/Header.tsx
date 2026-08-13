@@ -55,6 +55,9 @@ const TECH_STACK = [
     'Next.js',
     'Node.js',
     'NestJS',
+    'Expo',
+    'Python',
+    'PHP',
     'PostgreSQL',
 ];
 

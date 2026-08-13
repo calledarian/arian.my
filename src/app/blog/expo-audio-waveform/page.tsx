@@ -333,7 +333,7 @@ export default function BlogPage() {
           author: { "@type": "Person", name: "Arian Khademolghorani" },
           publisher: {
             "@type": "Organization",
-            name: "Arian.my",
+            name: "Arian Khademolghorani",
             logo: {
               "@type": "ImageObject",
               url: "https://arian.cheddybytes.com/assets/logo.png",
@@ -498,7 +498,7 @@ export const metadata = {
     title: "Expo Audio Waveform Tutorial",
     description: "Learn how to build a live audio waveform in React Native using expo-audio.",
     url: "https://arian.cheddybytes.com/blog/waveform",
-    siteName: "Arian.my Dev Blog",
+    siteName: "Arian Khademolghorani Dev Blog",
     type: "article",
     images: [
       {

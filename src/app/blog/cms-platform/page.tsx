@@ -97,7 +97,7 @@ const sections: BlogSection[] = [
     id: Sections.Deployment,
     title: "Deployment",
     content:
-      "The platform is deployed and actively used by the organization at bec.arian.my.",
+      "The platform is deployed and actively used by the organization at bec.cheddybytes.com.",
     listItems: [
       "Hosted as a full-stack web application",
       "Optimized for mobile and desktop use",

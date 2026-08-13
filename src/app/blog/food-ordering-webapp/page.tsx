@@ -184,7 +184,7 @@ export default function BlogPage() {
           author: { "@type": "Person", name: "Arian Khademolghorani" },
           publisher: {
             "@type": "Organization",
-            name: "Arian.my",
+            name: "Arian Khademolghorani",
             logo: {
               "@type": "ImageObject",
               url: "https://arian.cheddybytes.com/assets/logo.png",
@@ -298,7 +298,7 @@ export const metadata = {
     description:
       "Step-by-step explanation of developing a Telegram Mini App and Telegram Bot for order management.",
     url: "https://arian.cheddybytes.com/blog/food-ordering-webapp",
-    siteName: "Arian.my Dev Blog",
+    siteName: "Arian Khademolghorani Dev Blog",
     type: "article",
   },
   twitter: {

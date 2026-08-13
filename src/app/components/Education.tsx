@@ -24,7 +24,7 @@ interface ExperienceItem {
 const EXPERIENCE: ExperienceItem[] = [
     {
         title: "Software Engineer",
-        org: "",
+        org: "CheddyBytes",
         year: "2026 - 2027",
         desc: "Build stuff. Maintain stuff. Ship stuff. Expand my learning and experience acroos platforms, languages, and frameworks. Not just a developer, but a solution architect and problem solver.",
         type: "development",
@@ -256,7 +256,7 @@ export default function AboutPage() {
         <Box>
             <Box sx={{ mb: 8 }}>
                 <Typography sx={{ fontSize: "22px", lineHeight: 1.6, color: "var(--foreground)", maxWidth: 750, fontWeight: 500 }}>
-                    I build reliable software for the web. From CMS platforms to automation workflows, I enjoy solving technical problems that have real-world impact.
+                    I build reliable software for the mobile and web. From CMS platforms to automation workflows, I enjoy solving technical problems that have real-world impact.
                 </Typography>
             </Box>
 
