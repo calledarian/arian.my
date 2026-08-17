@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import Script from "next/script";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme';
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 import { Box } from "@mui/material";
 
 import "./globals.css";
 
-import NavigationBar from "./layouts/navigationBar";
 import Footer from "./layouts/footer";
+import { NEW_SITE_URL, OLD_SITE_URL } from "@/lib/site";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -18,49 +18,39 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const siteUrl = "https://arian.cheddybytes.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(OLD_SITE_URL),
 
   title: {
-    default: "Arian Khadem — Full-Stack Developer",
+    default: "Arian Khadem has moved — new website at arian.cheddybytes.com",
     template: "%s | Arian Khadem",
   },
 
   description:
-    "Full-stack developer building scalable web applications, CMS platforms, dashboards, API integrations, software solutions using Next.js and NestJS.",
+    "Arian Khademolghorani's personal website has permanently moved from arian.my to https://arian.cheddybytes.com. This is the official new site for his portfolio, case studies, and contact.",
 
   keywords: [
     "Arian Khadem",
     "Arian Khademolghorani",
     "Calledarian",
-    "Full-Stack Developer",
-    "Software Engineer",
-    "Next.js Developer",
-    "NestJS Developer",
-    "CMS Development",
-    "Dashboard Development",
-    "API Integration",
-    "Web Development",
-    "Automation Systems",
-    "Custom Software Solutions",
+    "arian.cheddybytes.com",
+    "website moved",
   ],
 
-  authors: [{ name: "Arian Khadem", url: siteUrl }],
+  authors: [{ name: "Arian Khadem", url: NEW_SITE_URL }],
   creator: "Arian Khadem",
   publisher: "Arian Khadem",
-  alternates: { canonical: "/" },
+  alternates: { canonical: NEW_SITE_URL },
 
   openGraph: {
-    title: "Arian Khadem — Full-Stack Developer",
+    title: "Arian Khadem has a new website",
     description:
-      "Building systems, scalable web applications, dashboards, CMS platforms, and API integrations tailored for real-world operations.",
-    url: siteUrl,
-    siteName: "Arian Khadem Portfolio",
+      "This website has permanently moved to https://arian.cheddybytes.com.",
+    url: NEW_SITE_URL,
+    siteName: "Arian Khadem",
     images: [
       {
-        url: `${siteUrl}/arian/arian-khademolghorani.jpg`,
+        url: `${NEW_SITE_URL}/arian/arian-khademolghorani.jpg`,
         width: 1200,
         height: 630,
         alt: "Arian Khadem — Full-Stack Developer",
@@ -72,10 +62,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Arian Khadem — Full-Stack Developer",
+    title: "Arian Khadem has a new website",
     description:
-      "Full-stack developer specializing in scalable web applications, dashboards, CMS systems, and API integrations.",
-    images: [`${siteUrl}/arian/arian-khademolghorani.jpg`],
+      "This website has permanently moved to https://arian.cheddybytes.com.",
+    images: [`${NEW_SITE_URL}/arian/arian-khademolghorani.jpg`],
   },
 
   robots: {
@@ -98,45 +88,55 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Arian Khademolghorani",
-    alternateName: ["Arian Khadem", "Calledarian"],
-    url: siteUrl,
-    image: `${siteUrl}/arian/arian-khademolghorani.jpg`,
-    jobTitle: "Full-Stack Software Developer",
-    description:
-      "Full-stack developer focused on scalable software, CMS platforms, dashboards, automation systems, and API integrations.",
-    knowsAbout: [
-      "Next.js", "React", "NestJS", "TypeScript",
-      "API Integration", "CMS Development", "Dashboard Development",
-      "Automation Systems", "Full-Stack Development", "Software",
-    ],
-    sameAs: [
-      "https://github.com/calledarian",
-      "https://linkedin.com/in/arian-khademolghorani",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${NEW_SITE_URL}/#person`,
+        name: "Arian Khademolghorani",
+        alternateName: ["Arian Khadem", "Calledarian"],
+        url: NEW_SITE_URL,
+        image: `${NEW_SITE_URL}/arian/arian-khademolghorani.jpg`,
+        jobTitle: "Full-Stack Software Developer",
+        description:
+          "Full-stack developer focused on scalable software, CMS platforms, dashboards, automation systems, and API integrations.",
+        sameAs: [
+          "https://github.com/calledarian",
+          "https://linkedin.com/in/arian-khademolghorani",
+          OLD_SITE_URL,
+        ],
+      },
+      {
+        "@type": "WebPage",
+        name: "Arian Khadem has moved to a new website",
+        url: `${OLD_SITE_URL}/`,
+        description:
+          "Arian Khademolghorani's personal website has permanently moved from arian.my to arian.cheddybytes.com.",
+        mainEntity: { "@id": `${NEW_SITE_URL}/#person` },
+        significantLink: NEW_SITE_URL,
+        relatedLink: NEW_SITE_URL,
+      },
     ],
   };
 
   return (
     <html lang="en" className={dmSans.variable} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body
         style={{
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
-          fontFamily: "var(--font-dm-sans), 'Helvetica Neue', Helvetica, sans-serif",
+          fontFamily:
+            "var(--font-dm-sans), 'Helvetica Neue', Helvetica, sans-serif",
         }}
       >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <Script
-              id="structured-data"
-              type="application/ld+json"
-              strategy="afterInteractive"
-            >
-              {JSON.stringify(structuredData)}
-            </Script>
-
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
               strategy="afterInteractive"
@@ -150,8 +150,6 @@ export default function RootLayout({
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
               `}
             </Script>
-
-            <NavigationBar />
 
             <Box component="main" sx={{ flex: 1 }}>
               {children}

@@ -25,7 +25,19 @@ export default function Footer() {
                             Arian Khademolghorani
                         </Typography>
                         <Typography sx={{ fontSize: "14px", color: "var(--tech-color)", maxWidth: 500 }}>
-                            Software Engineer architecting and building solutions - applications.
+                            Now at{" "}
+                            <Box
+                                component="a"
+                                href="https://arian.cheddybytes.com"
+                                sx={{
+                                    color: "var(--deep-blue)",
+                                    fontWeight: 700,
+                                    textDecoration: "underline",
+                                    textUnderlineOffset: "3px",
+                                }}
+                            >
+                                arian.cheddybytes.com
+                            </Box>
                         </Typography>
                     </Box>
 
